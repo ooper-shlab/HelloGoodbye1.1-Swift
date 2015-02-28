@@ -2,8 +2,8 @@
 //  AAPLProfileViewController.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/15.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/15.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -71,7 +71,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         
         addCardAndPreviewTab(constraints)
         
-        containerView.addConstraints(constraints)
+        containerView.addConstraints(constraints as [AnyObject])
     }
     
     private func addOverlayViewToView(containerView: UIView!, constraints: NSMutableArray) -> UIView! {
@@ -143,7 +143,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         overlayView.addSubview(valueFeild)
         
         // Ensure sufficient spacing from the row above this one
-        for previousRowItem in previousRowItems as [UIView] {
+        for previousRowItem in previousRowItems as! [UIView] {
             constraints.addObject(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: previousRowItem, attribute: .Bottom, multiplier: 1.0, constant: MinimumVerticalSpacingBetweenRows))
         }
         
@@ -310,12 +310,12 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
     
     //MARK: - UITextFieldDelegate
     
-    func textFieldDidBeginEditing(textField: UITextField!) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         // Add a Done button so that the user can dismiss the keyboard easily
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneButtonPressed:")
     }
     
-    func textFieldDidEndEditing(textField: UITextField!) {
+    func textFieldDidEndEditing(textField: UITextField) {
         // Remove the Done button
         navigationItem.rightBarButtonItem = nil
         

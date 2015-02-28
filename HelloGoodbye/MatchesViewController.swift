@@ -2,8 +2,8 @@
 //  AAPLMatchesViewController.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/14.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/14.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -79,7 +79,7 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
                 NSLayoutConstraint(item: cardView, attribute: .CenterY, relatedBy: .Equal, toItem: dummyView, attribute: .CenterY, multiplier: 1.0, constant: 0.0),
                 NSLayoutConstraint(item: cardView, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: swipeInstructionsView, attribute: .Bottom, multiplier: 1.0, constant: HelloGoodbyeVerticalMargin)
         ]
-        constraints.addObjectsFromArray(cardViewVerticalConstraints)
+        constraints.addObjectsFromArray(cardViewVerticalConstraints as [AnyObject])
         
         // Ensure that the card is centered horizontally within the container view, and doesn't exceed its width
         constraints.addObjectsFromArray(
@@ -92,7 +92,7 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
         // When the matches run out, we'll show this message
         allMatchesViewedExplanatoryView = addAllMatchesViewExplanatoryViewToContainerView(containerView, constraints: constraints)
         
-        containerView.addConstraints(constraints)
+        containerView.addConstraints(constraints as [AnyObject])
     }
     
     private func addDummyViewToContainerView(containerView: UIView!, topItem: AnyObject!, bottomItem: AnyObject!, constraints: NSMutableArray!) -> UIView! {
@@ -129,7 +129,7 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
         
         let helloAction = UIAccessibilityCustomAction(name: NSLocalizedString("Say hello", comment: "Accessibility action to say hello"), target: self, selector: "sayHello")
         let goodbyeAction = UIAccessibilityCustomAction(name: NSLocalizedString("Say goodbye", comment: "Accessibility action to say goodbye"), target: self, selector: "sayGoodbye")
-        for element in cardView.accessibilityElements as [UIView] {
+        for element in cardView.accessibilityElements as! [UIView] {
             element.accessibilityCustomActions = [helloAction, goodbyeAction]
         }
         
@@ -219,15 +219,15 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
         }
         
         view.layoutIfNeeded()
-        UIView.animateWithDuration(SwipeAnimationDuration, {
+        UIView.animateWithDuration(SwipeAnimationDuration, animations: {
             // Slide the card off screen
-            self.view.removeConstraints(self.cardViewVerticalConstraints)
+            self.view.removeConstraints(self.cardViewVerticalConstraints as [AnyObject])
             self.view.addConstraint(offScreenConstraint!)
             self.view.layoutIfNeeded()
             }) {finished in
                 // Bring the card back into view
                 self.view.removeConstraint(offScreenConstraint!)
-                self.view.addConstraints(self.cardViewVerticalConstraints)
+                self.view.addConstraints(self.cardViewVerticalConstraints as [AnyObject])
                 completion?()
         }
     }

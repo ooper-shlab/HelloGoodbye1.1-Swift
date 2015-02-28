@@ -2,8 +2,8 @@
 //  AgeSlider.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/14.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/14.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -19,7 +19,7 @@ import UIKit
 
 @objc(AAPLAgeSlider)
 class AgeSlider: UISlider {
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         tintColor = StyleUtilities.foregroundColor()
@@ -32,20 +32,25 @@ class AgeSlider: UISlider {
     override init() {
         super.init()
     }
-
-    func accessibilityValue() -> String {
-    // Return the age as a number, not as a percentage
-        return NSNumberFormatter.localizedStringFromNumber(value, numberStyle: .DecimalStyle)
+    
+    override var accessibilityValue: String! {
+        get {
+            // Return the age as a number, not as a percentage
+            return NSNumberFormatter.localizedStringFromNumber(value, numberStyle: .DecimalStyle)
+        }
+        set {
+            super.accessibilityValue = newValue
+        }
     }
-
+    
     override func accessibilityIncrement() {
         value++
         sendActionsForControlEvents(.ValueChanged)
     }
-
+    
     override func accessibilityDecrement() {
         value--
         sendActionsForControlEvents(.ValueChanged)
     }
-
+    
 }

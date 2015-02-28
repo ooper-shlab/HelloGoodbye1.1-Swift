@@ -2,8 +2,8 @@
 //  PreviewLabel.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/13.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/13.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.

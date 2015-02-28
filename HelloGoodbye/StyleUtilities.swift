@@ -2,8 +2,8 @@
 //  AAPLStyleUtilities.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/12.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/12.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -101,7 +101,7 @@ class StyleUtilities: NSObject {
     }
     
     class func overlayRoundedRectButton()-> UIButton! {
-        let button = UIButton.buttonWithType(.Custom) as UIButton
+        let button = UIButton.buttonWithType(.Custom) as! UIButton
         button.setTranslatesAutoresizingMaskIntoConstraints(false)
         button.setTitleColor(foregroundColor(), forState: .Normal)
         button.titleLabel!.font = largeFont

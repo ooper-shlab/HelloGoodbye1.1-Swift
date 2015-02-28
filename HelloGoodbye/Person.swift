@@ -2,8 +2,8 @@
 //  File.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/12.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/12.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -32,10 +32,10 @@ class Person: NSObject {
     class func personWithDictionary(personDictionary: NSDictionary)->Person {
         let person = Person()
 
-        person.photo = UIImage(named: personDictionary[PersonPhotoKey] as String)
-        person.age = (personDictionary[PersonAgeKey] as NSNumber).integerValue
-        person.hobbies = personDictionary[PersonHobbiesKey] as String
-        person.elevatorPitch = personDictionary[PersonElevatorPitchKey] as String
+        person.photo = UIImage(named: personDictionary[PersonPhotoKey] as! String)
+        person.age = (personDictionary[PersonAgeKey] as! NSNumber).integerValue
+        person.hobbies = personDictionary[PersonHobbiesKey] as! String
+        person.elevatorPitch = personDictionary[PersonElevatorPitchKey] as! String
         return person
     }
 

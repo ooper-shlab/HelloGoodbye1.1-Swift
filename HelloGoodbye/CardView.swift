@@ -2,8 +2,8 @@
 //  CardView.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/14.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/14.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -146,7 +146,7 @@ class CardView: UIView {
                 NSLayoutConstraint(item: elevatorPitchValueLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -CardVerticalPadding)
             ])
         
-        addConstraints(constraints)
+        addConstraints(constraints as [AnyObject])
     }
     
     func updateWithPerson(person: Person!) {

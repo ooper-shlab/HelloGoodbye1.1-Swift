@@ -2,8 +2,8 @@
 //  AAPLStartViewController.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/15.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/15.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -89,7 +89,7 @@ class StartViewController: AAPLPhotoBackgroundViewController {
         constraints.addObject(NSLayoutConstraint(item: matchesButton, attribute: .Leading, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Leading, multiplier: 1.0, constant: 0.0))
         constraints.addObject(NSLayoutConstraint(item: matchesButton, attribute: .Trailing, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
         
-        containerView.addConstraints(constraints)
+        containerView.addConstraints(constraints as [AnyObject])
     }
     
     private func addDummyViewToContainerView(containerView: UIView!, alignedOnTopWithItem topItem:AnyObject!, onBottomWithItem bottomItem: AnyObject!, constraints: NSMutableArray) -> UIView {

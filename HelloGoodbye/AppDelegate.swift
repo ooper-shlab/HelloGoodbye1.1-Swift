@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  HelloGoodbye
 //
-//  Created by 開発 on 2014/08/15.
-//  Copyright (c) 2014年 Apple. All rights reserved.
+//  Translated by OOPer in cooperation with shlab.jp, on 2014/08/15.
+//
 //
 /*
  Copyright (C) 2014 Apple Inc. All Rights Reserved.
@@ -20,18 +20,18 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow!
+    var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]!) -> Bool {
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
         let startViewController = StartViewController()
 
         let navigationController = UINavigationController(rootViewController: startViewController)
         navigationController.navigationBar.tintColor = StyleUtilities.foregroundColor()
-        window.rootViewController = navigationController
+        window?.rootViewController = navigationController
 
-        window.makeKeyAndVisible()
+        window?.makeKeyAndVisible()
         return true
     }
 
