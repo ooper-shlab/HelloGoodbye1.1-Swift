@@ -2,7 +2,7 @@ HelloGoodbye
 
 Translated by OOPer in cooperation with shlab.jp, on 2015/02/06.
 
-Adapted to Swift 1.2 beta2 on 2015/3/1.
+Adapted to Swift 1.2 beta3 on 2015/3/14.
 
 Based on
 https://developer.apple.com/library/ios/samplecode/HelloGoodbye/Introduction/Intro.html#//apple_ref/doc/uid/TP40014593
@@ -15,4 +15,4 @@ You should not contact to Apple or SHLab(jp) about any faults caused by my trans
 ===========================================================================
 BUILD REQUIREMENTS:
 
-Xcode 6.3 beta2, iOS SDK 8.3
+Xcode 6.3 beta3, iOS SDK 8.3

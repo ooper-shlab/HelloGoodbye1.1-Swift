@@ -35,8 +35,8 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
     private var matches: [Person] = []
     private var currentMatchIndex: Int = 0
     
-    override init() {
-        super.init()
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
         let serializedMatches = NSArray(contentsOfFile: NSBundle.mainBundle().pathForResource("matches", ofType: "plist")!)!
         //println(serializedMatches)
         var matches: [Person] = []
@@ -55,6 +55,10 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {

@@ -39,8 +39,8 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
     private var cardRevealConstraint: NSLayoutConstraint!
     private var cardWasRevealedBeforePan: Bool = false
     
-    override init() {
-        super.init()
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
         title = NSLocalizedString("Profile", comment: "Title of the profile page")
         backgroundImage = UIImage(named: "girl-bg")
         
@@ -53,6 +53,10 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
     }
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - Views and Constraints

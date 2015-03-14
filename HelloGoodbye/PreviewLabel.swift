@@ -38,9 +38,6 @@ class PreviewLabel: UILabel {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    override init() {
-        super.init()
-    }
     
     override func accessibilityActivate() -> Bool {
         delegate?.didActivatePreviewLabel(self)
