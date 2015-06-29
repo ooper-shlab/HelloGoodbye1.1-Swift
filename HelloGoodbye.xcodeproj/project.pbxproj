@@ -21,6 +21,7 @@
 		D7B228BB1A628B6700FB8BAD /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B11A628B6700FB8BAD /* StartViewController.swift */; };
 		D7B228BC1A628B6700FB8BAD /* StyleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B21A628B6700FB8BAD /* StyleUtilities.swift */; };
 		D7B915951A7675AE002949C6 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D7B915941A7675AE002949C6 /* LICENSE.txt */; };
+		D7F1AA7C1B41A996000DBF82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F1AA7B1B41A996000DBF82 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D7B228B11A628B6700FB8BAD /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		D7B228B21A628B6700FB8BAD /* StyleUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleUtilities.swift; sourceTree = "<group>"; };
 		D7B915941A7675AE002949C6 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		D7F1AA7B1B41A996000DBF82 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				D7B228B21A628B6700FB8BAD /* StyleUtilities.swift */,
 				3D62692619144D0E00039EE7 /* Localizable.strings */,
 				3DD4F0DE191419EC0033E0C2 /* Images.xcassets */,
+				D7F1AA7B1B41A996000DBF82 /* LaunchScreen.storyboard */,
 				3D69DD9F1915C45000DF2BDD /* matches.plist */,
 				3DD4F0D6191419EC0033E0C2 /* Supporting Files */,
 			);
@@ -140,7 +143,8 @@
 		3DD4F0CA191419EC0033E0C2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Apple;
 			};
 			buildConfigurationList = 3DD4F0CD191419EC0033E0C2 /* Build configuration list for PBXProject "HelloGoodbye" */;
@@ -168,6 +172,7 @@
 				D7B915951A7675AE002949C6 /* LICENSE.txt in Resources */,
 				3DD4F0DF191419EC0033E0C2 /* Images.xcassets in Resources */,
 				3D62692819144D0E00039EE7 /* Localizable.strings in Resources */,
+				D7F1AA7C1B41A996000DBF82 /* LaunchScreen.storyboard in Resources */,
 				3D69DDA01915C45000DF2BDD /* matches.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +233,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -294,6 +300,7 @@
 				INFOPLIST_FILE = HelloGoodbye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -307,6 +314,7 @@
 				INFOPLIST_FILE = HelloGoodbye/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

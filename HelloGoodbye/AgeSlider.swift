@@ -30,7 +30,7 @@ class AgeSlider: UISlider {
         super.init(coder: aDecoder)
     }
     
-    override var accessibilityValue: String! {
+    override var accessibilityValue: String? {
         get {
             // Return the age as a number, not as a percentage
             return NSNumberFormatter.localizedStringFromNumber(value, numberStyle: .DecimalStyle)

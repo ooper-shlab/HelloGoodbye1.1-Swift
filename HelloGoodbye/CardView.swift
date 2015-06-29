@@ -44,7 +44,7 @@ class CardView: UIView {
         
         backgroundView = UIView()
         backgroundView.backgroundColor = StyleUtilities.cardBackgroundColor()
-        backgroundView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(backgroundView)
         
         addProfileViews()
@@ -58,7 +58,7 @@ class CardView: UIView {
         photo = UIImageView()
         photo.isAccessibilityElement = true
         photo.accessibilityLabel =  NSLocalizedString("Profile photo", comment: "Accessibility label for profile photo")
-        photo.setTranslatesAutoresizingMaskIntoConstraints(false)
+        photo.translatesAutoresizingMaskIntoConstraints = false
         addSubview(photo)
         
         ageTitleLabel = StyleUtilities.standardLabel
@@ -86,40 +86,40 @@ class CardView: UIView {
     }
     
     private func addAllConstraints() {
-        let constraints:NSMutableArray = NSMutableArray()
+        var constraints: [NSLayoutConstraint] = []
         
         // Fill the card with the background view (leaving a border around it)
-        constraints.addObjectsFromArray(
+        constraints +=
             [
                 NSLayoutConstraint(item: backgroundView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CardBorderWidth),
                 NSLayoutConstraint(item: backgroundView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: CardBorderWidth),
                 NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: backgroundView, attribute: .Trailing, multiplier: 1.0, constant: CardBorderWidth),
                 NSLayoutConstraint(item: self, attribute: .Bottom, relatedBy: .Equal, toItem: backgroundView, attribute: .Bottom, multiplier: 1.0, constant: CardBorderWidth)
-            ])
+            ]
         
         // Position the photo
         // The constant for the aspect ratio constraint will be updated once a photo is set
         photoAspectRatioConstraint = NSLayoutConstraint(item: photo, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 0.0)
-        constraints.addObjectsFromArray(
+        constraints +=
             [
                 NSLayoutConstraint(item: photo, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1.0, constant: CardHorizontalPadding),
                 NSLayoutConstraint(item: photo, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1.0, constant: CardVerticalPadding),
                 NSLayoutConstraint(item: photo, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: CardPhotoWidth),
                 NSLayoutConstraint(item: photo, attribute: .Bottom, relatedBy: .LessThanOrEqual, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -CardVerticalPadding),
                 photoAspectRatioConstraint
-            ])
+            ]
         
         // Position the age to the right of the photo, with some spacing
-        constraints.addObjectsFromArray(
+        constraints +=
             [
                 NSLayoutConstraint(item: ageTitleLabel, attribute: .Leading, relatedBy: .Equal, toItem: photo, attribute: .Trailing, multiplier: 1.0, constant: CardInterItemHorizontalSpacing),
                 NSLayoutConstraint(item: ageTitleLabel, attribute: .Top, relatedBy: .Equal, toItem: photo, attribute: .Top, multiplier: 1.0, constant: 0.0),
                 NSLayoutConstraint(item: ageValueLabel, attribute: .Top, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .Bottom, multiplier: 1.0, constant: CardTitleValueSpacing),
                 NSLayoutConstraint(item: ageValueLabel, attribute: .Leading, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .Leading, multiplier: 1.0, constant: 0.0)
-            ])
+            ]
         
         // Position the hobbies to the right of the age
-        constraints.addObjectsFromArray(
+        constraints +=
             [
                 NSLayoutConstraint(item: hobbiesTitleLabel, attribute: .Leading, relatedBy: .GreaterThanOrEqual, toItem: ageTitleLabel, attribute: .Trailing, multiplier: 1.0, constant: CardInterItemHorizontalSpacing),
                 NSLayoutConstraint(item: hobbiesTitleLabel, attribute: .FirstBaseline, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .FirstBaseline, multiplier: 1.0, constant: 0.0),
@@ -128,10 +128,10 @@ class CardView: UIView {
                 NSLayoutConstraint(item: hobbiesValueLabel, attribute: .FirstBaseline, relatedBy: .Equal, toItem: ageValueLabel, attribute: .FirstBaseline, multiplier: 1.0, constant: 0.0),
                 NSLayoutConstraint(item: hobbiesTitleLabel, attribute: .Trailing, relatedBy: .LessThanOrEqual, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -CardHorizontalPadding),
                 NSLayoutConstraint(item: hobbiesValueLabel, attribute: .Trailing, relatedBy: .LessThanOrEqual, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -CardHorizontalPadding)
-            ])
+            ]
         
         // Position the elevator pitch below the age and the hobbies
-        constraints.addObjectsFromArray(
+        constraints +=
             [
                 NSLayoutConstraint(item: elevatorPitchTitleLabel, attribute: .Leading, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .Leading, multiplier: 1.0, constant: 0.0),
                 NSLayoutConstraint(item: elevatorPitchTitleLabel, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: ageValueLabel, attribute: .Bottom, multiplier: 1.0, constant: CardInterItemVerticalSpacing),
@@ -141,9 +141,9 @@ class CardView: UIView {
                 NSLayoutConstraint(item: elevatorPitchValueLabel, attribute: .Leading, relatedBy: .Equal, toItem: elevatorPitchTitleLabel, attribute: .Leading, multiplier: 1.0, constant: 0.0),
                 NSLayoutConstraint(item: elevatorPitchValueLabel, attribute: .Trailing, relatedBy: .Equal, toItem: self, attribute: .Trailing, multiplier: 1.0, constant: -CardHorizontalPadding),
                 NSLayoutConstraint(item: elevatorPitchValueLabel, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1.0, constant: -CardVerticalPadding)
-            ])
+            ]
         
-        addConstraints(constraints as [AnyObject])
+        addConstraints(constraints)
     }
     
     func updateWithPerson(person: Person!) {

@@ -101,8 +101,8 @@ class StyleUtilities: NSObject {
     }
     
     class func overlayRoundedRectButton()-> UIButton! {
-        let button = UIButton.buttonWithType(.Custom) as! UIButton
-        button.setTranslatesAutoresizingMaskIntoConstraints(false)
+        let button = UIButton(type: .Custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(foregroundColor(), forState: .Normal)
         button.titleLabel!.font = largeFont
         button.setBackgroundImage(overlayRoundedRectImage(), forState:.Normal)
@@ -130,7 +130,7 @@ class StyleUtilities: NSObject {
         label.textColor = foregroundColor()
         label.font = standardFont
         label.numberOfLines = 0 // don't force it to be a single line
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     

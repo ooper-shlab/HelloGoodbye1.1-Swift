@@ -51,13 +51,6 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         person.hobbies = "Music, swing dance, wine"
         person.elevatorPitch = "I can keep a steady beat."
     }
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     //MARK: - Views and Constraints
     
@@ -65,32 +58,32 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         super.viewDidLoad()
         
         let containerView = view
-        let constraints = NSMutableArray()
+        var constraints: [NSLayoutConstraint] = []
         
-        let overlayView = addOverlayViewToView(containerView, constraints: constraints)
-        let ageControls = addAgeControlsToView(overlayView, constraints: constraints)
+        let overlayView = addOverlayViewToView(containerView, constraints: &constraints)
+        let ageControls = addAgeControlsToView(overlayView, constraints: &constraints)
         hobbiesField = addTextFieldWithName(NSLocalizedString("Hobbies", comment: "The user's hobbies"),
-            text: person.hobbies, toView: overlayView, previousRowItems: ageControls, constraints: constraints)
-        elevatorPitchField = addTextFieldWithName(NSLocalizedString("Elevator Pitch", comment: "The user's elevator pitch for finding a partner"), text: person.elevatorPitch, toView: overlayView, previousRowItems: [hobbiesField], constraints: constraints)
+            text: person.hobbies, toView: overlayView, previousRowItems: ageControls, constraints: &constraints)
+        elevatorPitchField = addTextFieldWithName(NSLocalizedString("Elevator Pitch", comment: "The user's elevator pitch for finding a partner"), text: person.elevatorPitch, toView: overlayView, previousRowItems: [hobbiesField], constraints: &constraints)
         
-        addCardAndPreviewTab(constraints)
+        addCardAndPreviewTab(&constraints)
         
-        containerView.addConstraints(constraints as [AnyObject])
+        containerView.addConstraints(constraints)
     }
     
-    private func addOverlayViewToView(containerView: UIView!, constraints: NSMutableArray) -> UIView! {
+    private func addOverlayViewToView(containerView: UIView!, inout constraints: [NSLayoutConstraint]) -> UIView! {
         let overlayView = UIView()
         overlayView.backgroundColor = StyleUtilities.overlayColor()
         overlayView.layer.cornerRadius = StyleUtilities.overlayCornerRadius
-        overlayView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(overlayView)
         
         // Cover the view controller with the overlay, leaving a margin on all sides
         let margin = StyleUtilities.overlayMargin
-        constraints.addObject(NSLayoutConstraint(item: overlayView, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: margin))
-        constraints.addObject(NSLayoutConstraint(item: overlayView, attribute: .Bottom, relatedBy: .Equal, toItem: bottomLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: -margin))
-        constraints.addObject(NSLayoutConstraint(item: overlayView, attribute: .Left, relatedBy: .Equal, toItem: containerView, attribute: .Left, multiplier: 1.0, constant: margin))
-        constraints.addObject(NSLayoutConstraint(item: overlayView, attribute: .Right, relatedBy: .Equal, toItem: containerView, attribute: .Right, multiplier: 1.0, constant: -margin))
+        constraints.append(NSLayoutConstraint(item: overlayView, attribute: .Top, relatedBy: .Equal, toItem: topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: margin))
+        constraints.append(NSLayoutConstraint(item: overlayView, attribute: .Bottom, relatedBy: .Equal, toItem: bottomLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: -margin))
+        constraints.append(NSLayoutConstraint(item: overlayView, attribute: .Left, relatedBy: .Equal, toItem: containerView, attribute: .Left, multiplier: 1.0, constant: margin))
+        constraints.append(NSLayoutConstraint(item: overlayView, attribute: .Right, relatedBy: .Equal, toItem: containerView, attribute: .Right, multiplier: 1.0, constant: -margin))
         return overlayView
     }
     
@@ -105,7 +98,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         return ageValueLabel
     }
     
-    private func addAgeControlsToView(overlayView: UIView!, constraints: NSMutableArray) -> NSArray {
+    private func addAgeControlsToView(overlayView: UIView!, inout constraints: [NSLayoutConstraint]) -> NSArray {
         let ageTitleLabel = StyleUtilities.standardLabel
         ageTitleLabel.text = NSLocalizedString("Your age", comment: "The user's age")
         overlayView.addSubview(ageTitleLabel)
@@ -113,7 +106,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         let ageSlider = AgeSlider()
         ageSlider.value = Float(person.age)
         ageSlider.addTarget(self, action: "didUpdateAge:", forControlEvents: .ValueChanged)
-        ageSlider.setTranslatesAutoresizingMaskIntoConstraints(false)
+        ageSlider.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(ageSlider)
         
         // Display the current age next to the slider
@@ -121,18 +114,18 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         updateAgeValueLabelFromSlider(ageSlider)
         
         // Position the age title and value side by side, within the overlay view
-        constraints.addObject(NSLayoutConstraint(item: ageTitleLabel, attribute: .Top, relatedBy: .Equal, toItem: overlayView, attribute: .Top, multiplier: 1.0, constant: StyleUtilities.contentVerticalMargin))
-        constraints.addObject(NSLayoutConstraint(item: ageTitleLabel, attribute: .Leading, relatedBy: .Equal, toItem: overlayView, attribute: .Leading, multiplier: 1.0, constant: StyleUtilities.contentHorizontalMargin))
-        constraints.addObject(NSLayoutConstraint(item: ageSlider, attribute: .Leading, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .Trailing, multiplier: 1.0, constant: LabelControlMinimumSpacing))
-        constraints.addObject(NSLayoutConstraint(item: ageSlider, attribute: .CenterY, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
-        constraints.addObject(NSLayoutConstraint(item: ageValueLabel, attribute: .Leading, relatedBy: .Equal, toItem: ageSlider, attribute: .Trailing, multiplier: 1.0, constant: LabelControlMinimumSpacing))
-        constraints.addObject(NSLayoutConstraint(item: ageValueLabel, attribute: .FirstBaseline, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .FirstBaseline, multiplier: 1.0, constant: 0.0))
-        constraints.addObject(NSLayoutConstraint(item: ageValueLabel, attribute: .Trailing, relatedBy: .Equal, toItem: overlayView, attribute: .Trailing, multiplier: 1.0, constant: -StyleUtilities.contentHorizontalMargin))
+        constraints.append(NSLayoutConstraint(item: ageTitleLabel, attribute: .Top, relatedBy: .Equal, toItem: overlayView, attribute: .Top, multiplier: 1.0, constant: StyleUtilities.contentVerticalMargin))
+        constraints.append(NSLayoutConstraint(item: ageTitleLabel, attribute: .Leading, relatedBy: .Equal, toItem: overlayView, attribute: .Leading, multiplier: 1.0, constant: StyleUtilities.contentHorizontalMargin))
+        constraints.append(NSLayoutConstraint(item: ageSlider, attribute: .Leading, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .Trailing, multiplier: 1.0, constant: LabelControlMinimumSpacing))
+        constraints.append(NSLayoutConstraint(item: ageSlider, attribute: .CenterY, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: ageValueLabel, attribute: .Leading, relatedBy: .Equal, toItem: ageSlider, attribute: .Trailing, multiplier: 1.0, constant: LabelControlMinimumSpacing))
+        constraints.append(NSLayoutConstraint(item: ageValueLabel, attribute: .FirstBaseline, relatedBy: .Equal, toItem: ageTitleLabel, attribute: .FirstBaseline, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: ageValueLabel, attribute: .Trailing, relatedBy: .Equal, toItem: overlayView, attribute: .Trailing, multiplier: 1.0, constant: -StyleUtilities.contentHorizontalMargin))
         
         return [ageTitleLabel, ageSlider, ageValueLabel]
     }
     
-    private func addTextFieldWithName(name: String, text: String, toView overlayView: UIView!, previousRowItems: NSArray, constraints: NSMutableArray) -> UITextField {
+    private func addTextFieldWithName(name: String, text: String, toView overlayView: UIView!, previousRowItems: NSArray, inout constraints: [NSLayoutConstraint]) -> UITextField {
         let titleLabel = StyleUtilities.standardLabel
         titleLabel.text = name
         overlayView.addSubview(titleLabel)
@@ -143,21 +136,21 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         valueFeild.textColor = StyleUtilities.detailOnOverlayColor()
         valueFeild.text = text
         valueFeild.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Type here...", comment: "Placeholder for profile text fields") , attributes: [NSForegroundColorAttributeName: StyleUtilities.detailOnOverlayPlaceholderColor()])
-        valueFeild.setTranslatesAutoresizingMaskIntoConstraints(false)
+        valueFeild.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(valueFeild)
         
         // Ensure sufficient spacing from the row above this one
         for previousRowItem in previousRowItems as! [UIView] {
-            constraints.addObject(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: previousRowItem, attribute: .Bottom, multiplier: 1.0, constant: MinimumVerticalSpacingBetweenRows))
+            constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .Top, relatedBy: .GreaterThanOrEqual, toItem: previousRowItem, attribute: .Bottom, multiplier: 1.0, constant: MinimumVerticalSpacingBetweenRows))
         }
         
         // Place the title directly above the value
-        constraints.addObject(NSLayoutConstraint(item: valueFeild, attribute: .Top, relatedBy: .Equal, toItem: titleLabel, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: valueFeild, attribute: .Top, relatedBy: .Equal, toItem: titleLabel, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
         
         // Position the title and value within the overlay view
-        constraints.addObject(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal, toItem: overlayView, attribute: .Leading, multiplier: 1.0, constant: StyleUtilities.contentHorizontalMargin))
-        constraints.addObject(NSLayoutConstraint(item: valueFeild, attribute: .Leading, relatedBy: .Equal, toItem: titleLabel, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        constraints.addObject(NSLayoutConstraint(item: valueFeild, attribute: .Trailing, relatedBy: .Equal, toItem: overlayView, attribute: .Trailing, multiplier: 1.0, constant: -StyleUtilities.contentHorizontalMargin))
+        constraints.append(NSLayoutConstraint(item: titleLabel, attribute: .Leading, relatedBy: .Equal, toItem: overlayView, attribute: .Leading, multiplier: 1.0, constant: StyleUtilities.contentHorizontalMargin))
+        constraints.append(NSLayoutConstraint(item: valueFeild, attribute: .Leading, relatedBy: .Equal, toItem: titleLabel, attribute: .Leading, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: valueFeild, attribute: .Trailing, relatedBy: .Equal, toItem: overlayView, attribute: .Trailing, multiplier: 1.0, constant: -StyleUtilities.contentHorizontalMargin))
         
         return valueFeild
     }
@@ -165,7 +158,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
     private func previewTabBackgroundImage() -> UIImage {
         // The preview tab should be flat on the bottom, and have rounded corners on top.
         UIGraphicsBeginImageContextWithOptions(CGSizeMake(PreviewTabMinimumWidth, PreviewTabHeight), false, UIScreen.mainScreen().scale)
-        let roundedTopCornersRect = UIBezierPath(roundedRect: CGRectMake(0.0, 0.0, PreviewTabMinimumWidth, PreviewTabHeight), byRoundingCorners:(.TopLeft | .TopRight), cornerRadii:CGSizeMake(PreviewTabCornerRadius, PreviewTabCornerRadius))
+        let roundedTopCornersRect = UIBezierPath(roundedRect: CGRectMake(0.0, 0.0, PreviewTabMinimumWidth, PreviewTabHeight), byRoundingCorners:([.TopLeft, .TopRight]), cornerRadii:CGSizeMake(PreviewTabCornerRadius, PreviewTabCornerRadius))
         StyleUtilities.foregroundColor().set()
         roundedTopCornersRect.fill()
         var previewTabBackgroundImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -200,32 +193,32 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         return cardView
     }
     
-    func addCardAndPreviewTab(constraints: NSMutableArray) {
+    func addCardAndPreviewTab(inout constraints: [NSLayoutConstraint]) {
         previewTab = addPreviewTab()
-        previewTab.setTranslatesAutoresizingMaskIntoConstraints(false)
+        previewTab.translatesAutoresizingMaskIntoConstraints = false
         
         let previewLabel = addPreviewLabel()
-        previewLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        previewLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let cardView = addCardView()
-        cardView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cardView.translatesAutoresizingMaskIntoConstraints = false
         
         // Pin the tab to the bottom center of the screen
         cardRevealConstraint = NSLayoutConstraint(item: previewTab, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-        constraints.addObject(cardRevealConstraint)
-        constraints.addObject(NSLayoutConstraint(item: previewTab, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        constraints.append(cardRevealConstraint)
+        constraints.append(NSLayoutConstraint(item: previewTab, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         
         // Center the preview label within the tab
-        constraints.addObject(NSLayoutConstraint(item: previewLabel, attribute: .Leading, relatedBy: .Equal, toItem: previewTab, attribute: .Leading, multiplier: 1.0, constant: PreviewTabHorizontalPadding))
-        constraints.addObject(NSLayoutConstraint(item: previewLabel, attribute: .Trailing, relatedBy: .Equal, toItem: previewTab, attribute: .Trailing, multiplier: 1.0, constant: -PreviewTabHorizontalPadding))
-        constraints.addObject(NSLayoutConstraint(item: previewLabel, attribute: .CenterY, relatedBy: .Equal, toItem: previewTab, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: previewLabel, attribute: .Leading, relatedBy: .Equal, toItem: previewTab, attribute: .Leading, multiplier: 1.0, constant: PreviewTabHorizontalPadding))
+        constraints.append(NSLayoutConstraint(item: previewLabel, attribute: .Trailing, relatedBy: .Equal, toItem: previewTab, attribute: .Trailing, multiplier: 1.0, constant: -PreviewTabHorizontalPadding))
+        constraints.append(NSLayoutConstraint(item: previewLabel, attribute: .CenterY, relatedBy: .Equal, toItem: previewTab, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
         
         // Pin the top of the card to the bottom of the tab
-        constraints.addObject(NSLayoutConstraint(item: cardView, attribute: .Top, relatedBy: .Equal, toItem: previewTab, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
-        constraints.addObject(NSLayoutConstraint(item: cardView, attribute: .CenterX, relatedBy: .Equal, toItem: previewTab, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: cardView, attribute: .Top, relatedBy: .Equal, toItem: previewTab, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: cardView, attribute: .CenterX, relatedBy: .Equal, toItem: previewTab, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         
         // Ensure that the card fits within the view
-        constraints.addObject(NSLayoutConstraint(item: cardView, attribute: .Width, relatedBy: .LessThanOrEqual, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: cardView, attribute: .Width, relatedBy: .LessThanOrEqual, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0.0))
     }
     
     //MARK: - Responding to Actions
