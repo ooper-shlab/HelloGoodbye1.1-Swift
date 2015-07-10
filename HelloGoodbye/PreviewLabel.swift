@@ -35,7 +35,7 @@ class PreviewLabel: UILabel {
         font = StyleUtilities.largeFont
         textColor = StyleUtilities.previewTabLabelColor()
     }
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

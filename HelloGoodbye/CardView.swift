@@ -50,7 +50,7 @@ class CardView: UIView {
         addProfileViews()
         addAllConstraints()
     }
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
