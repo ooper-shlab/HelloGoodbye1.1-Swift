@@ -46,9 +46,9 @@ class StartViewController: AAPLPhotoBackgroundViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(logo)
         
-        let profileButton = roundedRectButtonWithTitle(NSLocalizedString("Profile", comment: "Title of the profile page"), action: "showProfile")
+        let profileButton = roundedRectButtonWithTitle(NSLocalizedString("Profile", comment: "Title of the profile page"), action: #selector(StartViewController.showProfile))
         containerView.addSubview(profileButton)
-        let matchesButton = roundedRectButtonWithTitle(NSLocalizedString("Matches", comment: "Title of the matches page"), action: "showMatches")
+        let matchesButton = roundedRectButtonWithTitle(NSLocalizedString("Matches", comment: "Title of the matches page"), action: #selector(StartViewController.showMatches))
         containerView.addSubview(matchesButton)
         
         var constraints: [NSLayoutConstraint] = []

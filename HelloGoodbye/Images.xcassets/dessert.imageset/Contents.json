@@ -2,8 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "130627_20sKR-WillamsburgNYC_AS_01559.jpg"
+      "filename" : "130627_20sKR-WillamsburgNYC_AS_01559.jpg",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

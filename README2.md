@@ -1,4 +1,4 @@
-HelloGoodbye
+#HelloGoodbye
 
 Translated by OOPer in cooperation with shlab.jp, on 2015/02/06.
 
@@ -13,4 +13,4 @@ You should not contact to Apple or SHLab(jp) about any faults caused by my trans
 ===========================================================================
 BUILD REQUIREMENTS:
 
-Xcode 7, iOS SDK 9
+Xcode 7.3, iOS SDK 9

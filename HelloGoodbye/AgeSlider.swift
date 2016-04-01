@@ -41,12 +41,12 @@ class AgeSlider: UISlider {
     }
     
     override func accessibilityIncrement() {
-        value++
+        value += 1
         sendActionsForControlEvents(.ValueChanged)
     }
     
     override func accessibilityDecrement() {
-        value--
+        value -= 1
         sendActionsForControlEvents(.ValueChanged)
     }
     

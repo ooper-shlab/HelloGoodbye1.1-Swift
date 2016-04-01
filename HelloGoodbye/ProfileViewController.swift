@@ -105,7 +105,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         
         let ageSlider = AgeSlider()
         ageSlider.value = Float(person.age)
-        ageSlider.addTarget(self, action: "didUpdateAge:", forControlEvents: .ValueChanged)
+        ageSlider.addTarget(self, action: #selector(ProfileViewController.didUpdateAge(_:)), forControlEvents: .ValueChanged)
         ageSlider.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(ageSlider)
         
@@ -173,7 +173,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         previewTab.userInteractionEnabled = true
         view.addSubview(previewTab)
         
-        let revealGestureRecognizer = UIPanGestureRecognizer(target:self, action:"didSlidePreviewTab:")
+        let revealGestureRecognizer = UIPanGestureRecognizer(target:self, action:#selector(ProfileViewController.didSlidePreviewTab(_:)))
         previewTab.addGestureRecognizer(revealGestureRecognizer)
         return previewTab
     }
@@ -309,7 +309,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
     
     func textFieldDidBeginEditing(textField: UITextField) {
         // Add a Done button so that the user can dismiss the keyboard easily
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneButtonPressed:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(ProfileViewController.doneButtonPressed(_:)))
     }
     
     func textFieldDidEndEditing(textField: UITextField) {

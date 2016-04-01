@@ -31,7 +31,7 @@
 		3DD4F0D3191419EC0033E0C2 /* HelloGoodbye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloGoodbye.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DD4F0D7191419EC0033E0C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DD4F0DE191419EC0033E0C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D7AE534E1A84D6B90085AA3B /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		D7AE534E1A84D6B90085AA3B /* README2.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README2.md; sourceTree = "<group>"; };
 		D7B228A91A628B6700FB8BAD /* AgeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgeSlider.swift; sourceTree = "<group>"; };
 		D7B228AA1A628B6700FB8BAD /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7B228AB1A628B6700FB8BAD /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -60,9 +60,9 @@
 		3DD4F0C9191419EC0033E0C2 = {
 			isa = PBXGroup;
 			children = (
-				D7AE534E1A84D6B90085AA3B /* readme.txt */,
 				D7B915941A7675AE002949C6 /* LICENSE.txt */,
 				3D6840E71978E18600D63065 /* README.md */,
+				D7AE534E1A84D6B90085AA3B /* README2.md */,
 				3DD4F0D5191419EC0033E0C2 /* HelloGoodbye */,
 				3DD4F0D4191419EC0033E0C2 /* Products */,
 			);

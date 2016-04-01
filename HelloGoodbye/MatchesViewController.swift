@@ -114,16 +114,16 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
         self.cardView = cardView
         containerView.addSubview(cardView)
         
-        let swipeUpRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipeUp:")
+        let swipeUpRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(MatchesViewController.handleSwipeUp(_:)))
         swipeUpRecognizer.direction = .Up
         cardView.addGestureRecognizer(swipeUpRecognizer)
         
-        let swipeDownRecognizer = UISwipeGestureRecognizer(target: self, action: "handleSwipeDown:")
+        let swipeDownRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(MatchesViewController.handleSwipeDown(_:)))
         swipeDownRecognizer.direction = .Down
         cardView.addGestureRecognizer(swipeDownRecognizer)
         
-        let helloAction = UIAccessibilityCustomAction(name: NSLocalizedString("Say hello", comment: "Accessibility action to say hello"), target: self, selector: "sayHello")
-        let goodbyeAction = UIAccessibilityCustomAction(name: NSLocalizedString("Say goodbye", comment: "Accessibility action to say goodbye"), target: self, selector: "sayGoodbye")
+        let helloAction = UIAccessibilityCustomAction(name: NSLocalizedString("Say hello", comment: "Accessibility action to say hello"), target: self, selector: #selector(MatchesViewController.sayHello))
+        let goodbyeAction = UIAccessibilityCustomAction(name: NSLocalizedString("Say goodbye", comment: "Accessibility action to say goodbye"), target: self, selector: #selector(MatchesViewController.sayGoodbye))
         for element in cardView.accessibilityElements as! [UIView] {
             element.accessibilityCustomActions = [helloAction, goodbyeAction]
         }
@@ -236,7 +236,7 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
     
     private func animateCardsForHello(forHello: Bool) {
         animateCardOffScreenToTop(forHello) {
-            self.currentMatchIndex++
+            self.currentMatchIndex += 1
             if let nextMatch = self.currentMatch() {
                 // Show the next match's profile in the card
                 self.cardView.updateWithPerson(nextMatch)
@@ -266,12 +266,12 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
         }
     }
     
-    private func sayHello() -> Bool {
+    @objc private func sayHello() -> Bool {
         animateCardsForHello(true)
         return true
     }
     
-    private func sayGoodbye() ->Bool {
+    @objc private func sayGoodbye() ->Bool {
         animateCardsForHello(false)
         return true
     }
