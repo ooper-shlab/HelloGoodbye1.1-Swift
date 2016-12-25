@@ -22,7 +22,7 @@ class AgeSlider: UISlider {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tintColor = StyleUtilities.foregroundColor()
+        tintColor = StyleUtilities.foregroundColor
         minimumValue = 18
         maximumValue = 120
     }
@@ -33,7 +33,7 @@ class AgeSlider: UISlider {
     override var accessibilityValue: String? {
         get {
             // Return the age as a number, not as a percentage
-            return NSNumberFormatter.localizedStringFromNumber(value, numberStyle: .DecimalStyle)
+            return NumberFormatter.localizedString(from: value as NSNumber, number: .decimal)
         }
         set {
             super.accessibilityValue = newValue
@@ -42,12 +42,12 @@ class AgeSlider: UISlider {
     
     override func accessibilityIncrement() {
         value += 1
-        sendActionsForControlEvents(.ValueChanged)
+        sendActions(for: .valueChanged)
     }
     
     override func accessibilityDecrement() {
         value -= 1
-        sendActionsForControlEvents(.ValueChanged)
+        sendActions(for: .valueChanged)
     }
     
 }

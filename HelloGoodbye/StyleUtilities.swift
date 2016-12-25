@@ -27,42 +27,42 @@ private let ContentHorizontalMargin: CGFloat = 30.0
 @objc(AAPLStyleUtilities)
 class StyleUtilities: NSObject {
     
-    class func foregroundColor()->UIColor {
+    class var foregroundColor: UIColor {
         return UIColor(red:75.0/255, green:35.0/255, blue:106.0/255, alpha:1.0)
     }
     
-    class func overlayColor()->UIColor {
+    class var overlayColor: UIColor {
         if UIAccessibilityIsReduceTransparencyEnabled() {
-            return UIColor.whiteColor()
+            return UIColor.white
         }
         return UIColor(white:1.0, alpha:0.8)
     }
     
-    class func cardBorderColor()->UIColor {
-        return foregroundColor()
+    class var cardBorderColor: UIColor {
+        return foregroundColor
     }
     
-    class func cardBackgroundColor()->UIColor {
-        return UIColor.whiteColor()
+    class var cardBackgroundColor: UIColor {
+        return UIColor.white
     }
     
-    class func detailColor()->UIColor {
+    class var detailColor: UIColor {
         if UIAccessibilityDarkerSystemColorsEnabled() {
-            return UIColor.blackColor()
+            return UIColor.black
         }
-        return UIColor.grayColor()
+        return UIColor.gray
     }
     
-    class func detailOnOverlayColor()->UIColor {
-        return UIColor.blackColor()
+    class var detailOnOverlayColor: UIColor {
+        return UIColor.black
     }
     
-    class func detailOnOverlayPlaceholderColor()->UIColor {
-        return UIColor.darkGrayColor()
+    class var detailOnOverlayPlaceholderColor: UIColor {
+        return UIColor.darkGray
     }
     
-    class func previewTabLabelColor()->UIColor {
-        return UIColor.whiteColor()
+    class var previewTabLabelColor: UIColor {
+        return UIColor.white
     }
     
     class var overlayCornerRadius: CGFloat {
@@ -81,31 +81,25 @@ class StyleUtilities: NSObject {
         return ContentVerticalMargin
     }
     
-    class func overlayRoundedRectImage()->UIImage! {
-        struct Static {
-            static var roundedRectImage: UIImage? = nil
-            static var onceToken: dispatch_once_t = 0
-        }
-        dispatch_once(&Static.onceToken) {
-            let imageSize = CGSizeMake(2 * self.overlayCornerRadius, 2 * self.overlayCornerRadius);
-            UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.mainScreen().scale)
+    static var overlayRoundedRectImage: UIImage = {
+        let imageSize = CGSize(width: 2 * overlayCornerRadius, height: 2 * overlayCornerRadius)
+        UIGraphicsBeginImageContextWithOptions(imageSize, false, UIScreen.main.scale)
             
-            let roundedRect = UIBezierPath(roundedRect:CGRectMake(0.0, 0.0, imageSize.width, imageSize.height), cornerRadius:OverlayCornerRadius)
-            self.overlayColor().set()
+        let roundedRect = UIBezierPath(roundedRect:CGRect(x: 0.0, y: 0.0, width: imageSize.width, height: imageSize.height), cornerRadius:OverlayCornerRadius)
+            overlayColor.set()
             roundedRect.fill()
             
-            Static.roundedRectImage = UIGraphicsGetImageFromCurrentImageContext()
-            Static.roundedRectImage = Static.roundedRectImage!.resizableImageWithCapInsets(UIEdgeInsetsMake(OverlayCornerRadius, OverlayCornerRadius, OverlayCornerRadius, OverlayCornerRadius))
-        }
-        return Static.roundedRectImage
-    }
+            var roundedRectImage = UIGraphicsGetImageFromCurrentImageContext()!
+            roundedRectImage = roundedRectImage.resizableImage(withCapInsets: UIEdgeInsetsMake(OverlayCornerRadius, OverlayCornerRadius, OverlayCornerRadius, OverlayCornerRadius))
+        return roundedRectImage
+    }()
     
-    class func overlayRoundedRectButton()-> UIButton! {
-        let button = UIButton(type: .Custom)
+    class func overlayRoundedRectButton() -> UIButton {
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(foregroundColor(), forState: .Normal)
+        button.setTitleColor(foregroundColor, for: .normal)
         button.titleLabel!.font = largeFont
-        button.setBackgroundImage(overlayRoundedRectImage(), forState:.Normal)
+        button.setBackgroundImage(overlayRoundedRectImage, for:.normal)
         button.contentEdgeInsets = UIEdgeInsetsMake(ButtonVerticalContentInset, ButtonHorizontalContentInset, ButtonVerticalContentInset, ButtonHorizontalContentInset)
         return button
     }
@@ -117,26 +111,26 @@ class StyleUtilities: NSObject {
         return "Avenir-Light"
     }
     
-    class var standardFont: UIFont! {
-        return UIFont(name:fontName, size:14.0)
+    class var standardFont: UIFont {
+        return UIFont(name: fontName, size:14.0)!
     }
     
-    class var largeFont: UIFont! {
-        return UIFont(name: fontName, size: 18.0)
+    class var largeFont: UIFont {
+        return UIFont(name: fontName, size: 18.0)!
     }
     
-    class var standardLabel: UILabel! {
+    class func standardLabel() -> UILabel {
         let label = UILabel()
-        label.textColor = foregroundColor()
+        label.textColor = foregroundColor
         label.font = standardFont
         label.numberOfLines = 0 // don't force it to be a single line
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
-    class var detailLabel: UILabel! {
-        let label = standardLabel
-        label.textColor = detailColor()
+    class func detailLabel() -> UILabel {
+        let label = standardLabel()
+        label.textColor = detailColor
         return label
     }
     

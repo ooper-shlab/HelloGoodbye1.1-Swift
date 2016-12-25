@@ -20,7 +20,7 @@ import UIKit
 @objc(AAPLPreviewLabelDelegate)
 protocol PreviewLabelDelegate: NSObjectProtocol {
     
-    func didActivatePreviewLabel(previewLabel: PreviewLabel!)
+    func didActivate(_ previewLabel: PreviewLabel)
     
 }
 
@@ -33,14 +33,14 @@ class PreviewLabel: UILabel {
         super.init(frame: frame)
         text = NSLocalizedString("Preview", comment: "Name of the card preview tab")
         font = StyleUtilities.largeFont
-        textColor = StyleUtilities.previewTabLabelColor()
+        textColor = StyleUtilities.previewTabLabelColor
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override func accessibilityActivate() -> Bool {
-        delegate?.didActivatePreviewLabel(self)
+        delegate?.didActivate(self)
         return false
     }
     

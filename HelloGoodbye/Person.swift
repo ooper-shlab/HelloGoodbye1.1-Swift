@@ -24,19 +24,24 @@ private let PersonElevatorPitchKey = "elevatorPitch"
 @objc(AAPLPerson)
 class Person: NSObject {
 
-    var photo: UIImage!
-    var age: Int = 0
-    var hobbies: String!
-    var elevatorPitch: String!
+    var photo: UIImage
+    var age: Int
+    var hobbies: String
+    var elevatorPitch: String
 
-    class func personWithDictionary(personDictionary: NSDictionary)->Person {
-        let person = Person()
+    convenience init(dictionary personDictionary: [String: Any]) {
 
-        person.photo = UIImage(named: personDictionary[PersonPhotoKey] as! String)
-        person.age = (personDictionary[PersonAgeKey] as! NSNumber).integerValue
-        person.hobbies = personDictionary[PersonHobbiesKey] as! String
-        person.elevatorPitch = personDictionary[PersonElevatorPitchKey] as! String
-        return person
+        self.init(photo: personDictionary[PersonPhotoKey] as! String,
+                  age:personDictionary[PersonAgeKey] as! Int,
+                  hobbies: personDictionary[PersonHobbiesKey] as! String,
+                  elevatorPitch: personDictionary[PersonElevatorPitchKey] as! String)
+    }
+    init(photo: String, age: Int, hobbies: String, elevatorPitch: String) {
+        
+        self.photo = UIImage(named: photo)!
+        self.age = age
+        self.hobbies = hobbies
+        self.elevatorPitch = elevatorPitch
     }
 
 }

@@ -42,19 +42,19 @@ class AAPLPhotoBackgroundViewController: UIViewController {
         let bounds = view.bounds
         let imageSize = backgroundView.image!.size
         let imageAspectRatio = imageSize.width / imageSize.height
-        let viewAspectRatio = CGRectGetWidth(bounds) / CGRectGetHeight(bounds)
+        let viewAspectRatio = bounds.width / bounds.height
         if viewAspectRatio > imageAspectRatio {
             // Let the background run off the top and bottom of the screen, so it fills the width
-            let scaledSize = CGSizeMake(CGRectGetWidth(bounds), CGRectGetWidth(bounds) / imageAspectRatio)
-            backgroundView.frame = CGRectMake(0.0, (CGRectGetHeight(bounds) - scaledSize.height) / 2.0, scaledSize.width, scaledSize.height)
+            let scaledSize = CGSize(width: bounds.width, height: bounds.width / imageAspectRatio)
+            backgroundView.frame = CGRect(x: 0.0, y: (bounds.height - scaledSize.height) / 2.0, width: scaledSize.width, height: scaledSize.height)
         } else {
             // Let the background run off the left and right of the screen, so it fills the height
-            let scaledSize = CGSizeMake(imageAspectRatio * CGRectGetHeight(bounds), CGRectGetHeight(bounds))
-            backgroundView.frame = CGRectMake((CGRectGetWidth(bounds) - scaledSize.width) / 2.0, 0.0, scaledSize.width, scaledSize.height)
+            let scaledSize = CGSize(width: imageAspectRatio * bounds.height, height: bounds.height)
+            backgroundView.frame = CGRect(x: (bounds.width - scaledSize.width) / 2.0, y: 0.0, width: scaledSize.width, height: scaledSize.height)
         }
     }
     
-    private func backgroundImageDidSet(oldValue: UIImage!) {
+    private func backgroundImageDidSet(_ oldValue: UIImage!) {
         if( oldValue !== backgroundImage ) {
             backgroundView?.image = backgroundImage
         }

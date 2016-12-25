@@ -32,10 +32,10 @@ class StartViewController: AAPLPhotoBackgroundViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let containerView = view
+        let containerView = view!
         
         let logoOverlayView = UIView()
-        logoOverlayView.backgroundColor = StyleUtilities.overlayColor()
+        logoOverlayView.backgroundColor = StyleUtilities.overlayColor
         logoOverlayView.layer.cornerRadius = StyleUtilities.overlayCornerRadius
         logoOverlayView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(logoOverlayView)
@@ -46,50 +46,50 @@ class StartViewController: AAPLPhotoBackgroundViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(logo)
         
-        let profileButton = roundedRectButtonWithTitle(NSLocalizedString("Profile", comment: "Title of the profile page"), action: #selector(StartViewController.showProfile))
+        let profileButton = roundedRectButton(title: NSLocalizedString("Profile", comment: "Title of the profile page"), action: #selector(StartViewController.showProfile))
         containerView.addSubview(profileButton)
-        let matchesButton = roundedRectButtonWithTitle(NSLocalizedString("Matches", comment: "Title of the matches page"), action: #selector(StartViewController.showMatches))
+        let matchesButton = roundedRectButton(title: NSLocalizedString("Matches", comment: "Title of the matches page"), action: #selector(StartViewController.showMatches))
         containerView.addSubview(matchesButton)
         
         var constraints: [NSLayoutConstraint] = []
         
         // Use dummy views space the top of the view, the logo, the buttons, and the bottom of the view evenly apart
-        let topDummyView = addDummyViewToContainerView(containerView, alignedOnTopWithItem: topLayoutGuide, onBottomWithItem: logoOverlayView, constraints: &constraints)
-        let middleDummyView = addDummyViewToContainerView(containerView, alignedOnTopWithItem: logoOverlayView, onBottomWithItem: profileButton, constraints: &constraints)
-        let bottomDummyView = addDummyViewToContainerView(containerView, alignedOnTopWithItem: matchesButton, onBottomWithItem: bottomLayoutGuide, constraints: &constraints)
-        constraints.append(NSLayoutConstraint(item: topDummyView, attribute: .Height, relatedBy: .Equal, toItem: middleDummyView, attribute: .Height, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: middleDummyView, attribute: .Height, relatedBy: .Equal, toItem: bottomDummyView, attribute: .Height, multiplier: 1.0, constant: 0.0))
+        let topDummyView = addDummyView(toContainer: containerView, alignedOnTopWithItem: topLayoutGuide, onBottomWithItem: logoOverlayView, constraints: &constraints)
+        let middleDummyView = addDummyView(toContainer: containerView, alignedOnTopWithItem: logoOverlayView, onBottomWithItem: profileButton, constraints: &constraints)
+        let bottomDummyView = addDummyView(toContainer: containerView, alignedOnTopWithItem: matchesButton, onBottomWithItem: bottomLayoutGuide, constraints: &constraints)
+        constraints.append(NSLayoutConstraint(item: topDummyView, attribute: .height, relatedBy: .equal, toItem: middleDummyView, attribute: .height, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: middleDummyView, attribute: .height, relatedBy: .equal, toItem: bottomDummyView, attribute: .height, multiplier: 1.0, constant: 0.0))
         
         // Position the logo
         constraints +=
             [
-                NSLayoutConstraint(item: logoOverlayView, attribute: .Top, relatedBy: .Equal, toItem: topDummyView, attribute: .Bottom, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: logoOverlayView, attribute: .CenterX, relatedBy: .Equal, toItem: containerView, attribute: .CenterX, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: logoOverlayView, attribute: .Bottom, relatedBy: .Equal, toItem: middleDummyView, attribute: .Top, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: logo, attribute: .Top, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Top, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: logo, attribute: .Bottom, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Bottom, multiplier: 1.0, constant: -LogoPadding),
-                NSLayoutConstraint(item: logo, attribute: .Leading, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Leading, multiplier: 1.0, constant: LogoPadding),
-                NSLayoutConstraint(item: logo, attribute: .Trailing, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Trailing, multiplier: 1.0, constant: -LogoPadding)
+                NSLayoutConstraint(item: logoOverlayView, attribute: .top, relatedBy: .equal, toItem: topDummyView, attribute: .bottom, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: logoOverlayView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: logoOverlayView, attribute: .bottom, relatedBy: .equal, toItem: middleDummyView, attribute: .top, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: logo, attribute: .top, relatedBy: .equal, toItem: logoOverlayView, attribute: .top, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: logo, attribute: .bottom, relatedBy: .equal, toItem: logoOverlayView, attribute: .bottom, multiplier: 1.0, constant: -LogoPadding),
+                NSLayoutConstraint(item: logo, attribute: .leading, relatedBy: .equal, toItem: logoOverlayView, attribute: .leading, multiplier: 1.0, constant: LogoPadding),
+                NSLayoutConstraint(item: logo, attribute: .trailing, relatedBy: .equal, toItem: logoOverlayView, attribute: .trailing, multiplier: 1.0, constant: -LogoPadding)
             ]
         
         // Position the profile button
-        constraints.append(NSLayoutConstraint(item: profileButton, attribute: .CenterX, relatedBy: .Equal, toItem: containerView, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: profileButton, attribute: .Top, relatedBy: .Equal, toItem: middleDummyView, attribute: .Bottom, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: profileButton, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: profileButton, attribute: .top, relatedBy: .equal, toItem: middleDummyView, attribute: .bottom, multiplier: 1.0, constant: 0.0))
         
         // Put the matches button below the profile button
-        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .Top, relatedBy: .Equal, toItem: profileButton, attribute: .Bottom, multiplier: 1.0, constant: ButtonToButtonVerticalSpacing))
-        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .Bottom, relatedBy: .Equal, toItem: bottomDummyView, attribute: .Top, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .top, relatedBy: .equal, toItem: profileButton, attribute: .bottom, multiplier: 1.0, constant: ButtonToButtonVerticalSpacing))
+        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .bottom, relatedBy: .equal, toItem: bottomDummyView, attribute: .top, multiplier: 1.0, constant: 0.0))
         
         // Align the left and right edges of the two buttons and the logo
-        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .Leading, relatedBy: .Equal, toItem: profileButton, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .Trailing, relatedBy: .Equal, toItem: profileButton, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .Leading, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Leading, multiplier: 1.0, constant: 0.0))
-        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .Trailing, relatedBy: .Equal, toItem: logoOverlayView, attribute: .Trailing, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .leading, relatedBy: .equal, toItem: profileButton, attribute: .leading, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .trailing, relatedBy: .equal, toItem: profileButton, attribute: .trailing, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .leading, relatedBy: .equal, toItem: logoOverlayView, attribute: .leading, multiplier: 1.0, constant: 0.0))
+        constraints.append(NSLayoutConstraint(item: matchesButton, attribute: .trailing, relatedBy: .equal, toItem: logoOverlayView, attribute: .trailing, multiplier: 1.0, constant: 0.0))
         
         containerView.addConstraints(constraints)
     }
     
-    private func addDummyViewToContainerView(containerView: UIView, alignedOnTopWithItem topItem:AnyObject!, onBottomWithItem bottomItem: AnyObject!, inout constraints: [NSLayoutConstraint]) -> UIView {
+    private func addDummyView(toContainer containerView: UIView, alignedOnTopWithItem topItem:AnyObject!, onBottomWithItem bottomItem: AnyObject!, constraints: inout [NSLayoutConstraint]) -> UIView {
         let dummyView = UIView()
         dummyView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(dummyView)
@@ -97,18 +97,18 @@ class StartViewController: AAPLPhotoBackgroundViewController {
         // The horizontal layout of the dummy view does not matter, but for completeness, we give it a width of 0 and center it horizontally.
         constraints +=
             [
-                NSLayoutConstraint(item: dummyView, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 0.0, constant: 0.0),
-                NSLayoutConstraint(item: dummyView, attribute: .CenterX, relatedBy: .Equal, toItem: containerView, attribute: .CenterX, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: dummyView, attribute: .Top, relatedBy: .Equal, toItem: topItem, attribute: .Bottom, multiplier: 1.0, constant: 0.0),
-                NSLayoutConstraint(item: dummyView, attribute: .Bottom, relatedBy: .Equal, toItem: bottomItem, attribute: .Top, multiplier: 1.0, constant: 0.0)
+                NSLayoutConstraint(item: dummyView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0.0, constant: 0.0),
+                NSLayoutConstraint(item: dummyView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: dummyView, attribute: .top, relatedBy: .equal, toItem: topItem, attribute: .bottom, multiplier: 1.0, constant: 0.0),
+                NSLayoutConstraint(item: dummyView, attribute: .bottom, relatedBy: .equal, toItem: bottomItem, attribute: .top, multiplier: 1.0, constant: 0.0)
             ]
         return dummyView
     }
     
-    private func roundedRectButtonWithTitle(title: String, action: Selector) -> UIButton {
+    private func roundedRectButton(title: String, action: Selector) -> UIButton {
         let button = StyleUtilities.overlayRoundedRectButton()
-        button.setTitle(title, forState: .Normal)
-        button.addTarget(self, action: action, forControlEvents: .TouchUpInside)
+        button.setTitle(title, for: .normal)
+        button.addTarget(self, action: action, for: .touchUpInside)
         return button
     }
     

@@ -10,16 +10,16 @@
 		3D62692819144D0E00039EE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D62692619144D0E00039EE7 /* Localizable.strings */; };
 		3D69DDA01915C45000DF2BDD /* matches.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D69DD9F1915C45000DF2BDD /* matches.plist */; };
 		3DD4F0DF191419EC0033E0C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DD4F0DE191419EC0033E0C2 /* Images.xcassets */; };
-		D7B228B31A628B6700FB8BAD /* AgeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228A91A628B6700FB8BAD /* AgeSlider.swift */; };
-		D7B228B41A628B6700FB8BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AA1A628B6700FB8BAD /* AppDelegate.swift */; };
-		D7B228B51A628B6700FB8BAD /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AB1A628B6700FB8BAD /* CardView.swift */; };
-		D7B228B61A628B6700FB8BAD /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AC1A628B6700FB8BAD /* MatchesViewController.swift */; };
-		D7B228B71A628B6700FB8BAD /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AD1A628B6700FB8BAD /* Person.swift */; };
-		D7B228B81A628B6700FB8BAD /* PhotoBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AE1A628B6700FB8BAD /* PhotoBackgroundViewController.swift */; };
-		D7B228B91A628B6700FB8BAD /* PreviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AF1A628B6700FB8BAD /* PreviewLabel.swift */; };
-		D7B228BA1A628B6700FB8BAD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B01A628B6700FB8BAD /* ProfileViewController.swift */; };
-		D7B228BB1A628B6700FB8BAD /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B11A628B6700FB8BAD /* StartViewController.swift */; };
-		D7B228BC1A628B6700FB8BAD /* StyleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B21A628B6700FB8BAD /* StyleUtilities.swift */; };
+		D70C593B1E100062005312C0 /* PreviewLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AF1A628B6700FB8BAD /* PreviewLabel.swift */; };
+		D70C593E1E1002C8005312C0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B01A628B6700FB8BAD /* ProfileViewController.swift */; };
+		D70C593F1E1002F5005312C0 /* PhotoBackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AE1A628B6700FB8BAD /* PhotoBackgroundViewController.swift */; };
+		D70C59401E100369005312C0 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AD1A628B6700FB8BAD /* Person.swift */; };
+		D70C59411E1003A0005312C0 /* StyleUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B21A628B6700FB8BAD /* StyleUtilities.swift */; };
+		D70C59421E100454005312C0 /* AgeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228A91A628B6700FB8BAD /* AgeSlider.swift */; };
+		D70C59431E1007FD005312C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AA1A628B6700FB8BAD /* AppDelegate.swift */; };
+		D70C59441E100805005312C0 /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AC1A628B6700FB8BAD /* MatchesViewController.swift */; };
+		D70C59451E100C22005312C0 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228B11A628B6700FB8BAD /* StartViewController.swift */; };
+		D70C59461E100FAD005312C0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B228AB1A628B6700FB8BAD /* CardView.swift */; };
 		D7B915951A7675AE002949C6 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D7B915941A7675AE002949C6 /* LICENSE.txt */; };
 		D7F1AA7C1B41A996000DBF82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7F1AA7B1B41A996000DBF82 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -144,8 +144,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Apple;
+				TargetAttributes = {
+					3DD4F0D2191419EC0033E0C2 = {
+						LastSwiftMigration = 0820;
+					};
+				};
 			};
 			buildConfigurationList = 3DD4F0CD191419EC0033E0C2 /* Build configuration list for PBXProject "HelloGoodbye" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -184,16 +189,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7B228B91A628B6700FB8BAD /* PreviewLabel.swift in Sources */,
-				D7B228B71A628B6700FB8BAD /* Person.swift in Sources */,
-				D7B228BC1A628B6700FB8BAD /* StyleUtilities.swift in Sources */,
-				D7B228B81A628B6700FB8BAD /* PhotoBackgroundViewController.swift in Sources */,
-				D7B228B41A628B6700FB8BAD /* AppDelegate.swift in Sources */,
-				D7B228B51A628B6700FB8BAD /* CardView.swift in Sources */,
-				D7B228BB1A628B6700FB8BAD /* StartViewController.swift in Sources */,
-				D7B228B61A628B6700FB8BAD /* MatchesViewController.swift in Sources */,
-				D7B228BA1A628B6700FB8BAD /* ProfileViewController.swift in Sources */,
-				D7B228B31A628B6700FB8BAD /* AgeSlider.swift in Sources */,
+				D70C593E1E1002C8005312C0 /* ProfileViewController.swift in Sources */,
+				D70C593F1E1002F5005312C0 /* PhotoBackgroundViewController.swift in Sources */,
+				D70C59441E100805005312C0 /* MatchesViewController.swift in Sources */,
+				D70C59411E1003A0005312C0 /* StyleUtilities.swift in Sources */,
+				D70C59461E100FAD005312C0 /* CardView.swift in Sources */,
+				D70C59401E100369005312C0 /* Person.swift in Sources */,
+				D70C59451E100C22005312C0 /* StartViewController.swift in Sources */,
+				D70C59431E1007FD005312C0 /* AppDelegate.swift in Sources */,
+				D70C59421E100454005312C0 /* AgeSlider.swift in Sources */,
+				D70C593B1E100062005312C0 /* PreviewLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,8 +231,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -236,6 +243,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -251,6 +259,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -270,8 +279,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -279,6 +290,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -287,6 +299,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -302,6 +316,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -316,6 +331,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
