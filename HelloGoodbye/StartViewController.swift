@@ -112,12 +112,12 @@ class StartViewController: AAPLPhotoBackgroundViewController {
         return button
     }
     
-    func showProfile() {
+    @objc func showProfile() {
         let profileViewController = ProfileViewController()
         navigationController!.pushViewController(profileViewController, animated: true)
     }
     
-    func showMatches() {
+    @objc func showMatches() {
         let matchesViewController = MatchesViewController()
         navigationController!.pushViewController(matchesViewController, animated: true)
     }

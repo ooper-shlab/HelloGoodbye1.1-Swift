@@ -135,7 +135,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         valueFeild.font = StyleUtilities.standardFont
         valueFeild.textColor = StyleUtilities.detailOnOverlayColor
         valueFeild.text = text
-        valueFeild.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Type here...", comment: "Placeholder for profile text fields") , attributes: [NSForegroundColorAttributeName: StyleUtilities.detailOnOverlayPlaceholderColor])
+        valueFeild.attributedPlaceholder = NSAttributedString(string: NSLocalizedString("Type here...", comment: "Placeholder for profile text fields") , attributes: [NSAttributedStringKey.foregroundColor: StyleUtilities.detailOnOverlayPlaceholderColor])
         valueFeild.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(valueFeild)
         
@@ -223,7 +223,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
     
     //MARK: - Responding to Actions
     
-    func didUpdateAge(_ ageSlider: AgeSlider) {
+    @objc func didUpdateAge(_ ageSlider: AgeSlider) {
         // Turn the value into a valid age
         ageSlider.value = round(ageSlider.value)
         
@@ -265,7 +265,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         }
     }
     
-    func didSlidePreviewTab(_ gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func didSlidePreviewTab(_ gestureRecognizer: UIPanGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:
             cardWasRevealedBeforePan = isCardRevealed
@@ -299,7 +299,7 @@ class ProfileViewController: AAPLPhotoBackgroundViewController,
         }
     }
     
-    func doneButtonPressed(_ sender: Any) {
+    @objc func doneButtonPressed(_ sender: Any) {
         // End editing on whichever text field is first responder
         hobbiesField.resignFirstResponder()
         elevatorPitchField.resignFirstResponder()

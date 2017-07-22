@@ -144,7 +144,7 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
         
         let overlayMargin = StyleUtilities.overlayMargin
         let topMarginConstraint = NSLayoutConstraint(item: overlayView, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: overlayMargin)
-        topMarginConstraint.priority = UILayoutPriorityRequired - 1
+        topMarginConstraint.priority = UILayoutPriority(UILayoutPriority.required.rawValue - 1)
         constraints.append(topMarginConstraint)
         // Position the label inside the overlay view
         constraints.append(NSLayoutConstraint(item: swipeInstructionsLabel, attribute: .top, relatedBy: .equal, toItem: overlayView, attribute: .top, multiplier: 1.0, constant: HelloGoodbyeVerticalMargin))
@@ -185,7 +185,7 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
     private func currentMatch() -> Person? {
         var currentMatch: Person? = nil
         if currentMatchIndex < matches.count {
-            currentMatch = (matches[currentMatchIndex] as Person)
+            currentMatch = (matches[currentMatchIndex])
         }
         return currentMatch
     }
@@ -271,13 +271,13 @@ class MatchesViewController: AAPLPhotoBackgroundViewController {
     }
     
     let UIGestureRecognizerStateRecognized = UIGestureRecognizerState.ended
-    func handleSwipeUp(_ gestureRecognizer: UISwipeGestureRecognizer!) {
+    @objc func handleSwipeUp(_ gestureRecognizer: UISwipeGestureRecognizer!) {
         if gestureRecognizer.state == UIGestureRecognizerStateRecognized {
             sayHello()
         }
     }
     
-    func handleSwipeDown(_ gestureRecognizer: UISwipeGestureRecognizer!) {
+    @objc func handleSwipeDown(_ gestureRecognizer: UISwipeGestureRecognizer!) {
         if gestureRecognizer.state == UIGestureRecognizerStateRecognized {
             sayGoodbye()
         }
